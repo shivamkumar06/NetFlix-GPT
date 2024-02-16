@@ -1,6 +1,9 @@
 # Netflix-GPT
     - Create React APP
     - Configured TailwindCSS
+    - Header
+    - Login Form
+    - SignUp Forms
 
 
 # Features
@@ -14,3 +17,6 @@
             - Title & Description
             - Movie Suggestions
                 - Movie List * N
+    - NetflixGPT
+        - Search Bar
+        - Movie Suggestions
