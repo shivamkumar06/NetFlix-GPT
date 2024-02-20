@@ -47,15 +47,18 @@ const Login = () => {
           }).then(() => {
             // Profile updated!
             const { uid, email, displayName, photoURL } = auth.currentUser;
+            console.log(auth);
             dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL}));
             navigate("/browse");
           }).catch((error) => {
             // An error occurred
+            console.log(error);
            setErrorMessage(error.code + "-" + error.message);
           });
       
         })
         .catch((error) => {
+          console.log(error);
           const errorCode = error.code;
           const errorMessage = error.message;
           setErrorMessage(errorCode + "-" + errorMessage);
@@ -76,6 +79,7 @@ const Login = () => {
           // ...
         })
         .catch((error) => {
+          console.log(error);
           const errorCode = error.code;
           const errorMessage = error.message;
           setErrorMessage(errorCode + "-" + errorMessage);
