@@ -23,4 +23,4 @@ export const SUPPORTED_LANGAUGES = [
   { identifier: "fr", name: "French" },
 ];
 
-export const OPENAI_GPT_KEY='';
+export const OPENAI_GPT='';
