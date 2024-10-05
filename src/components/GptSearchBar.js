@@ -3,7 +3,7 @@ import lang from "../utils/languageConstants";
 import { useDispatch, useSelector } from "react-redux";
 import { model } from "../utils/geminiai";
 import { API_OPTIONS } from "../utils/constants";
-import { addGptMovies } from "../utils/gptSlice";
+import { addGptMovies, showErrorState } from "../utils/gptSlice";
 
 const GptSearchBar = () => {
   const dispatch = useDispatch();
@@ -20,6 +20,8 @@ const GptSearchBar = () => {
     return json.results;
   };
   const handleGptSearchClick = async () => {
+    dispatch(addGptMovies({ movieName: [], movieResults: [] }));
+    dispatch(showErrorState(null));
     const gptQuery =
       "Act as a Movie Recommender System and suggest some movies for the query " +
       searchText.current.value +
@@ -27,13 +29,15 @@ const GptSearchBar = () => {
     const result = await model.generateContent(gptQuery);
     const response = await result.response;
     const text = response.text();
-    if (text) {
+    const movieNames = text.split(",").map((name) => name.trim());
+    if (text && movieNames.length === 5) {
       const movies = text.split(",");
       const data = movies.map((movie) => searchMovieTMDB(movie));
       const results = await Promise.all(data);
       dispatch(addGptMovies({ movieName: movies, movieResults: results }));
     } else {
-      console.error("error occured");
+      console.error("error occured", text);
+      dispatch(showErrorState(text));
     }
   };
   return (
@@ -54,6 +58,9 @@ const GptSearchBar = () => {
         >
           {lang[langKey].search}
         </button>
+        {/* <div className="py-2 px-4 col-span-9 text-white">
+          {lang[langKey].suggestion}
+        </div> */}
       </form>
     </div>
   );
