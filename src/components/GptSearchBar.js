@@ -9,11 +9,16 @@ const GptSearchBar = () => {
   const dispatch = useDispatch();
   const langKey = useSelector((store) => store.config.lang);
   const searchText = useRef(null);
-  const searchMovieTMDB = async (movie) =>{
-    const data = await fetch('https://api.themoviedb.org/3/search/movie?query='+movie+'&include_adult=false&language=en-US&page=1', API_OPTIONS);
+  const searchMovieTMDB = async (movie) => {
+    const data = await fetch(
+      "https://api.themoviedb.org/3/search/movie?query=" +
+        movie +
+        "&include_adult=false&language=en-US&page=1",
+      API_OPTIONS
+    );
     const json = await data.json();
     return json.results;
-  }
+  };
   const handleGptSearchClick = async () => {
     const gptQuery =
       "Act as a Movie Recommender System and suggest some movies for the query " +
@@ -24,17 +29,17 @@ const GptSearchBar = () => {
     const text = response.text();
     if (text) {
       const movies = text.split(",");
-      const data = movies.map(movie=> searchMovieTMDB(movie));
+      const data = movies.map((movie) => searchMovieTMDB(movie));
       const results = await Promise.all(data);
-      dispatch(addGptMovies({movieName:movies,movieResults:results}));
+      dispatch(addGptMovies({ movieName: movies, movieResults: results }));
     } else {
       console.error("error occured");
     }
   };
   return (
-    <div className="pt-[10%] flex justify-center">
+    <div className="pt-[40%] md:pt-[10%] flex justify-center">
       <form
-        className="w-1/2  bg-black grid grid-cols-12"
+        className="md:w-1/2 w-full bg-black grid grid-cols-12"
         onSubmit={(e) => e.preventDefault()}
       >
         <input

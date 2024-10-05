@@ -35,12 +35,18 @@
     - TMDB Image CDN
     - Made Browse Page amazing with tailwind css
     - Created custom hooks usePopularMovie, useTopRatedMovie, useUpcomingMovie
-    - GPT Search Page
-    - GPT Search Bar
+    - AI Search Page
+    - AI Search Bar
     - (BONUS) Multi-language Feature in our App
-     
-
-
+    - Get AI API Key
+    - AI Search API Call
+    - Fetched AI Movie Suggestions from TMDB
+    - Created geminiSlice added data
+    - Reused Movie List Component to make movie suggestion container
+    - Memoization
+    - Added .env file
+    - Added .env config to deployment
+    - Mobile Responsiveness
 
 # Features
 
