@@ -5,8 +5,8 @@ import VideoTitle from "./VideoTitle";
 const MainContainer = () => {
   const movies = useSelector((store) => store.movies?.nowPlayingMovies);
   if (!movies) return;
-  const randomMovie = Math.floor(Math.random() * 20) + 1;
-  const mainMovie = movies[randomMovie];
+  // const randomMovie = Math.floor(Math.random() * 20) + 1;
+  const mainMovie = movies[0];
 
   const { original_title, overview, id } = mainMovie;
 
