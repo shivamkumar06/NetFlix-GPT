@@ -25,7 +25,7 @@ const GptSearchBar = () => {
     const gptQuery =
       "Act as a Movie Recommender System and suggest some movies for the query " +
       searchText.current.value +
-      " only give me names of 5 movies, coma seprated like the exaple result given ahead. Example Result: The Dark Knight, Inception, Interstellar, The Prestige, Memento.";
+      " only give me names of 5 movies, coma seprated like the example result given ahead. Example Result: The Dark Knight, Inception, Interstellar, The Prestige, Memento.";
     const result = await model.generateContent(gptQuery);
     const response = await result.response;
     const text = response.text();
